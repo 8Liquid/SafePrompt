@@ -1,0 +1,210 @@
+openapi: 3.0.0
+info:
+  title: SafePrompt API
+  description: A lightweight, rule-based text moderation API for Cloudflare Workers
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://api.safeprompt.io
+    description: Production server
+  - url: https://staging-api.safeprompt.io
+    description: Staging server
+paths:
+  /moderate:
+    post:
+      summary: Moderate text content
+      description: Analyzes input text for harmful, unsafe, or malicious content and returns detection results, cleaned text, and severity scores.
+      operationId: moderate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModerationRequest'
+            examples:
+              basic:
+                value:
+                  text: "This is a test message"
+      responses:
+        '200':
+          description: Successful moderation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModerationResponse'
+              examples:
+                no_issues:
+                  value:
+                    flags:
+                      profanity: false
+                      hate_speech: false
+                      toxicity: false
+                      violence: false
+                      threats: false
+                      self_harm: false
+                      nsfw: false
+                      scam_phishing: false
+                      pii: false
+                      spam: false
+                      prompt_injection: false
+                      jailbreak: false
+                      all_caps_aggression: false
+                    categories_detected: []
+                    safe_text: "This is a test message"
+                    messages:
+                      - "No issues detected in text"
+                    severity: "low"
+                    score: 0.0
+                    meta:
+                      timestamp: "2024-01-01T00:00:00.000Z"
+                      version: "1.0.0"
+                      latency_ms: 5
+                with_detections:
+                  value:
+                    flags:
+                      profanity: true
+                      hate_speech: false
+                      toxicity: false
+                      violence: false
+                      threats: false
+                      self_harm: false
+                      nsfw: false
+                      scam_phishing: false
+                      pii: false
+                      spam: false
+                      prompt_injection: false
+                      jailbreak: false
+                      all_caps_aggression: false
+                    categories_detected:
+                      - "profanity"
+                    safe_text: "This is a t*** message"
+                    messages:
+                      - "Detected Profanity in text"
+                    severity: "low"
+                    score: 0.3
+                    meta:
+                      timestamp: "2024-01-01T00:00:00.000Z"
+                      version: "1.0.0"
+                      latency_ms: 8
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Text cannot be empty"
+        '413':
+          description: Payload too large - text exceeds maximum length
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Text exceeds maximum length of 100000 characters"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Internal server error"
+components:
+  schemas:
+    ModerationRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: The text to moderate
+          minLength: 1
+          maxLength: 100000
+          example: "This is a test message"
+    ModerationResponse:
+      type: object
+      properties:
+        flags:
+          $ref: '#/components/schemas/ModerationFlags'
+        categories_detected:
+          type: array
+          items:
+            type: string
+          description: Array of detected category names
+        safe_text:
+          type: string
+          description: Sanitized version of the input text
+        messages:
+          type: array
+          items:
+            type: string
+          description: Human-readable messages explaining detections
+        severity:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+          description: Severity level
+        score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Numeric score from 0.0 to 1.0
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ModerationFlags:
+      type: object
+      properties:
+        profanity:
+          type: boolean
+        hate_speech:
+          type: boolean
+        toxicity:
+          type: boolean
+        violence:
+          type: boolean
+        threats:
+          type: boolean
+        self_harm:
+          type: boolean
+        nsfw:
+          type: boolean
+        scam_phishing:
+          type: boolean
+        pii:
+          type: boolean
+        spam:
+          type: boolean
+        prompt_injection:
+          type: boolean
+        jailbreak:
+          type: boolean
+        all_caps_aggression:
+          type: boolean
+    Meta:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp
+        version:
+          type: string
+          description: API version (semver)
+          example: "1.0.0"
+        latency_ms:
+          type: integer
+          description: Processing time in milliseconds
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+

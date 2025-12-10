@@ -1,0 +1,4 @@
+# Hate speech detection relies on patterns, not wordlists
+# Actual slurs are not included here for ethical reasons
+# This file is kept for structure but patterns in the detector handle detection
+

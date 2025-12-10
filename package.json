@@ -1,0 +1,39 @@
+{
+  "name": "safeprompt-api",
+  "version": "1.0.0",
+  "description": "A lightweight, rule-based text moderation API for Cloudflare Workers",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "build": "tsc && wrangler deploy --dry-run",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "moderation",
+    "content-filtering",
+    "safety",
+    "api",
+    "cloudflare-workers"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "@types/node": "^20.10.0",
+    "@vitest/coverage-v8": "^1.1.0",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0",
+    "wrangler": "^3.19.0",
+    "zod": "^3.22.4"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}
+
