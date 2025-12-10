@@ -4,6 +4,32 @@
 
 SafePrompt is a rule-based text moderation API designed for Cloudflare Workers. It analyzes input text for harmful, unsafe, or malicious content and returns detected categories, cleaned/sanitized text, severity scores, and human-readable messages.
 
+## 🚀 Try It Now (Free API)
+
+**Live API Endpoint:** `https://safeprompt.safeprompt.workers.dev/moderate`
+
+Test the API directly in your browser or with curl:
+
+```bash
+curl -X POST https://safeprompt.safeprompt.workers.dev/moderate \
+  -H "Content-Type: application/json" \
+  -d '{"text": "This is a test message"}'
+```
+
+Or try it in JavaScript:
+
+```javascript
+const response = await fetch('https://safeprompt.safeprompt.workers.dev/moderate', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ text: 'Your text here' })
+});
+const result = await response.json();
+console.log(result);
+```
+
+**No API key required** - Free to use for testing and development!
+
 ## Overview
 
 SafePrompt provides fast, lightweight text moderation without requiring machine learning models. It uses a modular detector system with keyword lists, regex patterns, and heuristics to identify various types of problematic content.
@@ -113,7 +139,8 @@ Moderates input text and returns detection results.
 ### cURL
 
 ```bash
-curl -X POST https://api.safeprompt.io/moderate \
+# Using the live API (no API key needed)
+curl -X POST https://safeprompt.safeprompt.workers.dev/moderate \
   -H "Content-Type: application/json" \
   -d '{"text": "This is a test message"}'
 ```
@@ -121,7 +148,8 @@ curl -X POST https://api.safeprompt.io/moderate \
 ### JavaScript
 
 ```javascript
-const response = await fetch('https://api.safeprompt.io/moderate', {
+// Using the live API (no API key needed)
+const response = await fetch('https://safeprompt.safeprompt.workers.dev/moderate', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
