@@ -7,6 +7,10 @@
 
 SafePrompt is a rule-based text moderation API designed for Cloudflare Workers. It analyzes input text for harmful, unsafe, or malicious content and returns detected categories, cleaned/sanitized text, severity scores, and human-readable messages.
 
+## 📈 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=8Liquid/SafePrompt&type=Date)](https://star-history.com/#8Liquid/SafePrompt&Date)
+
 ## 🚀 Try It Now (Free API)
 
 **Live API Endpoint:** `https://safeprompt.safeprompt.workers.dev/moderate`
