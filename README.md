@@ -2,6 +2,9 @@
 
 **SafePrompt — a lightweight, open-source text moderation API.**
 
+![GitHub stars](https://img.shields.io/github/stars/8Liquid/SafePrompt?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/8Liquid/SafePrompt?style=social)
+
 SafePrompt is a rule-based text moderation API designed for Cloudflare Workers. It analyzes input text for harmful, unsafe, or malicious content and returns detected categories, cleaned/sanitized text, severity scores, and human-readable messages.
 
 ## 🚀 Try It Now (Free API)
@@ -226,10 +229,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/safeprompt/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/safeprompt/discussions)
+- **Issues**: [GitHub Issues](https://github.com/8Liquid/SafePrompt/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/8Liquid/SafePrompt/discussions)
 
 ---
 
-Made with ❤️ by the SafePrompt contributors
+Made with ❤️ by [8Liquid](https://github.com/8Liquid)
 
