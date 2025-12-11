@@ -232,11 +232,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Issues**: [GitHub Issues](https://github.com/8Liquid/SafePrompt/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/8Liquid/SafePrompt/discussions)
 
----
-
-Made with ❤️ by [8Liquid](https://github.com/8Liquid)
-
 ## 📈 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=8Liquid/SafePrompt&type=Date)](https://star-history.com/#8Liquid/SafePrompt&Date)
+
+---
+
+Made with ❤️ by [8Liquid](https://github.com/8Liquid)
 
